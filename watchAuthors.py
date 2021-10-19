@@ -6,7 +6,6 @@ import re
 import json
 from email.mime.text import MIMEText
 
-# adapter
 with open('./watchAuthors.json', 'r') as f:
     args = json.loads(f.read())
     old_total = args['total']
@@ -15,12 +14,12 @@ with open('./watchAuthors.json', 'r') as f:
 
 receivers = ['EMAIL_ADDRESS_TO_NOTIFY', 'ANOTHER_ADDRESS_TO_NOTIFY']
 
+# Setting up the link for the advanced search
 link = "https://arxiv.org/search/advanced?advanced="
 for idx, (name, surname) in enumerate(zip(names, surnames)):
     link += "&terms-"+str(idx)+"-operator=OR&terms-"+str(idx)+"-term="+name+"%2C+"+surname+"&terms-"+str(idx)+"-field=author"
 
 link += "&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=all_dates&date-year=2021&date-from_date=&date-to_date=&date-date_type=submitted_date&abstracts=show&size=100&order=-announced_date_first"
-
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
@@ -76,7 +75,7 @@ if diff > 0:
         abstract = abstract[0].getText().strip()
 
         if i==0:
-            mail = 'Hi Team,\n\n' + \
+            mail = 'Hi,\n\n' + \
                    'A new article was just uploaded on arxiv!\n\nTitle : ' + latest_title + '\n\nAuthors : ' + \
                     authors + '\n\n' + abstract + '\n\nLink : ' + latest_link 
         else:
@@ -87,11 +86,10 @@ if diff > 0:
         diff -= 1
         i += 1
     
-    mail = mail + '\n\nCordially,\nBOT NAME'
     msg = MIMEText(mail)
     lead_authors = ', and also from '.join(lead_authors)
     msg['Subject'] = 'New article from '+lead_authors+'!' 
-    msg['From'] = 'BOT NAME'
+    msg['From'] = 'BOT_NAME'
     msg['To'] = ','.join(receivers)
     
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)

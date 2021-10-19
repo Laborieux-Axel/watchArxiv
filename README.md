@@ -12,7 +12,7 @@ The script works as follows: a list of authors is kept in `watchAuthors.json`
 The script does a request to an advanced search on arxiv for all those authors
 and look at the total of articles. 
 If it is greater than the stored total, then the difference corresponds to 
-newly updated papers and can be extracted from the search and sent by email.
+newly uploaded papers and can be extracted from the search and sent by email.
 The total is then updated.
 
 ## Setting the environment
