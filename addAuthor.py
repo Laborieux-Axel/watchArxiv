@@ -1,13 +1,10 @@
 import sys
-import smtplib
 import requests
 import bs4
 import os
 import re
 import json
-from email.mime.text import MIMEText
 
-# adapter
 with open('./watchAuthors.json', 'r') as f:
     args = json.loads(f.read())
     old_total = args['total']

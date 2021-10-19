@@ -14,6 +14,7 @@ and look at the total of articles.
 If it is greater than the stored total, then the difference corresponds to 
 newly uploaded papers and can be extracted from the search and sent by email.
 The total is then updated.
+The script works for Linux and MacOs.
 
 ## Setting the environment
 
