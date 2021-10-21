@@ -27,9 +27,9 @@ res = requests.get(link, headers=headers)
 res.raise_for_status()
 soup = bs4.BeautifulSoup(res.text, features="html.parser")
 results = soup.select('li.arxiv-result')
-new_total = soup.select('h1.title')[0].getText()
-new_total = re.findall(r'\s\d+\s', new_total)[0].strip()
-new_total = int(new_total)
+new_total = soup.select('h1.title')[0].getText().strip()
+new_total = new_total.split(' ')
+new_total = int(new_total[3].replace(',', ''))
 
 
 with open('./watchAuthors.json', 'w') as json_file:

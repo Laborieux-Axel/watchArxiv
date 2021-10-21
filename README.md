@@ -35,10 +35,15 @@ The followed authors are kept into `watchAuthors.json`, as well as the current
 total of articles uploaded on arxiv by them.
 To start adding authors (one at a time), run:
 ```
-python addAuthor.py First_name Last_name
+python updateAuthors.py add First_name Last_name
 ```
 It should output the new total of articles uploaded by the followed authors 
 on arixv. 
+If the last name contains spaces, add commas around the last name.
+To remove an author, run:
+```
+python updateAuthors.py remove First_name Last_name
+```
 
 ## Adapt to your case
 
